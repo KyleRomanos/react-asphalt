@@ -4,7 +4,9 @@ import Calculation from './Calculation';
 import MetersSquared from './MetersSquared';
 import Tonnage from './Tonnage';
 
-function App() {
+
+const App =() => {
+
   return (
     <div className="App">
       <h1>Asphalt Calculator</h1>

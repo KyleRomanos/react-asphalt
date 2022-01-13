@@ -1,110 +1,32 @@
-import React from 'react';
+import React, {useState, useEffect } from 'react';
 // import { render } from 'react-dom';
 
-class MetersSquared extends React.Component {
-    constructor() {
-        super();
-        this.state={
-            feetSquared: '',
-            metersSquared: ''
-        }
-    }
+export default function MetersSquared() {
 
-        handleFeetSquared = (event) => {
-            this.setState({
-                feetSquared: event.target.value,
-            })
-        }
+     
+    const [feetSquared, setFeetSquared] = useState('');
+    const [metersSquared, setMetersSquared] = useState('');
+        
+    
+    useEffect(() => {
+        const newMetersSquared = parseInt(feetSquared) / 10.76;
+        
+     
+        setMetersSquared(newMetersSquared);
+    },[metersSquared, feetSquared])
 
-        calculateMetersSquared = (event) => {
-            event.preventDefault();
-            this.setState({metersSquared: parseInt(this.state.feetSquared) / 10.76})
-           
-        }
-
-        render() {
         return (
             
             <div>
                 <h3>Feet Squared</h3>
-            <form onSubmit={this.calculateMetersSquared}>
+            <form>
                 <div>
-                <input type="number" value={this.state.length} onChange={this.handleLength} onChange={this.handleFeetSquared} placeholder="enter feet squared"/>
-                </div>
-                
-                <div>
-                    <button type="submit">Add</button>
+                <input type="number" value={feetSquared} onChange={(e) => setFeetSquared(e.target.value)} placeholder="enter feet squared"/>
                 </div>
                 <h4><b>Meters Squared:</b></h4>
-                {this.state.metersSquared}
+                {metersSquared}
             </form>
             </div>
         )
+        }
     
-    }
-}
-
- 
-export default MetersSquared; 
-
-// import React from 'react';
-
-
-// class Calculation extends React.Component {
-//     constructor() {
-//         super();
-//         this.state={
-//             length: '',
-//             width: '',
-//             feetSquared: '',
-//             metersSquared: ''
-//         }
-//     }
-
-//     handleLength = (event) => {
-//         this.setState({
-//             length: event.target.value,
-//         })
-     
-//     }
-
-
-//     handleWidth = (event) => {
-//         this.setState({
-//             width: event.target.value
-//         })
-//     }
-
-//     exe = (event) => {
-//         event.preventDefault()
-//         this.setState({feetSquared: parseInt(this.state.length) * parseInt(this.state.width)})
-
-//         this.setState({metersSquared: parseInt(this.state.length) * parseInt(this.state.width) / 10.76})
-//     }
-
-//     render() {
-//         return (
-//             <div>
-//                 <h1>Length</h1>
-//                 <form onSubmit={this.exe}>
-//                     <div>
-//                     <input type="number" value={this.state.length} onChange={this.handleLength}/>
-//                 </div>
-//                 <div>
-//                     <h1>Width</h1>
-//                     <input type="number" value={this.state.width} onChange={this.handleWidth}/>
-//                 </div>
-//                 <div>
-//                     <button type="submit">Add</button>
-//                 </div>
-//                 </form>
-//                 <h4><b>Feet Squared:</b></h4>
-//                 {this.state.feetSquared}
-//                 <h4><b>Meters Squared:</b></h4>
-//                 {this.state.metersSquared}
-//             </div>
-//         )
-//     }
-// }
-
-// export default Calculation; 
