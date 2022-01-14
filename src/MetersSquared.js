@@ -4,8 +4,8 @@ import React, {useState, useEffect } from 'react';
 export default function MetersSquared() {
 
      
-    const [feetSquared, setFeetSquared] = useState(null);
-    const [metersSquared, setMetersSquared] = useState(null);
+    const [feetSquared, setFeetSquared] = useState('');
+    const [metersSquared, setMetersSquared] = useState('');
         
     
     useEffect(() => {

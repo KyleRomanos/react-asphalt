@@ -6,21 +6,25 @@ export default function Calculation() {
     const [width, setWidth] = useState('');
     const [feetSquared, setFeetSquared] = useState('');
     const [metersSquared, setMetersSquared] = useState('');
+    const [triangleMeasurement, setTriangleMeasurement] = useState(false);
+    
 
     // useEffect is a Hook, it will be called everytime 'length' or 'width' change.
     useEffect(() => {
         const newFeetSquared = parseInt(length) * parseInt(width);
         const newMetersSquared = parseInt(length) * parseInt(width) / 10.76;
+        
         if(length && width) {
+
         setFeetSquared(newFeetSquared);
         setMetersSquared(newMetersSquared);
     }},[length, width]);
 
     return (
             <div>
-                    <div>Triangle Measurement?
-                    <input type="radio" value="No" name="gender" /> No
-                    <input type="radio" value="Yes" name="gender" /> Yes
+                    <div>Triangle Measurement? {triangleMeasurement}
+                    <input type="checkbox" name="triangle" onChange={(e) =>{setTriangleMeasurement(e.target.checked) }}/> 
+                    
                     </div>
                     <div>
                     <select id="operator">
@@ -44,9 +48,9 @@ export default function Calculation() {
                 </div>
                 </form>
                 <h4><b>Feet Squared:</b></h4>
-                {feetSquared}
+                { triangleMeasurement ? feetSquared / 2 : feetSquared}
                 <h4><b>Meters Squared:</b></h4>
-                {metersSquared}
+                {triangleMeasurement ? metersSquared / 2 : metersSquared}
             </div>
     )
 
