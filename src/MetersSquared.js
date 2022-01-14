@@ -1,19 +1,20 @@
 import React, {useState, useEffect } from 'react';
-// import { render } from 'react-dom';
+
 
 export default function MetersSquared() {
 
      
-    const [feetSquared, setFeetSquared] = useState('');
-    const [metersSquared, setMetersSquared] = useState('');
+    const [feetSquared, setFeetSquared] = useState(null);
+    const [metersSquared, setMetersSquared] = useState(null);
         
     
     useEffect(() => {
         const newMetersSquared = parseInt(feetSquared) / 10.76;
-        
+        if (feetSquared) {
      
         setMetersSquared(newMetersSquared);
-    },[metersSquared, feetSquared])
+    }},[metersSquared, feetSquared]) 
+
 
         return (
             
@@ -24,7 +25,7 @@ export default function MetersSquared() {
                 <input type="number" value={feetSquared} onChange={(e) => setFeetSquared(e.target.value)} placeholder="enter feet squared"/>
                 </div>
                 <h4><b>Meters Squared:</b></h4>
-                {metersSquared}
+            {metersSquared}
             </form>
             </div>
         )

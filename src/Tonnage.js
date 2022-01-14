@@ -1,49 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // import { render } from 'react-dom';
 
-class Tonnage extends React.Component {
-    constructor() {
-        super();
-        this.state={
-            asphaltHeight: '',
-            squaredMeters: '',
-            tonnage: '',
-            results: [],
-            // totalTonnage: ''
-            
-        }
+export default function Tonnage() {
+
+    const [asphaltHeight, setAsphaltHeight] = useState('');
+    const [squaredMeters, setSquaredMeters] = useState('');
+    const [tonnage, setTonnage] = useState('');
+    const [results, setResults] = useState([]);
+
+    useEffect(() => {
+        const calculateTonnage = parseFloat(0.000246).toPrecision(3) * parseInt(asphaltHeight) * 10 * parseInt(squaredMeters)
+        if(asphaltHeight && squaredMeters) {
+        setTonnage(calculateTonnage) 
+    }}, [asphaltHeight, squaredMeters, tonnage])
+
+    const totalTonnage = (event) => {
+        results.push(parseFloat(tonnage))
     }
 
-        handleAsphaltHeight = (event) => {
-            this.setState({
-                asphaltHeight: event.target.value,
-            })
-        }
 
-        handleSquaredMeters = (event) => {
-            this.setState({
-                squaredMeters: event.target.value,
-            })
-        }
-
-        calculateTonnage = (event) => {
-            event.preventDefault();
-            this.setState({tonnage: parseFloat(0.000246).toPrecision(3) * (this.state.asphaltHeight) * 10 * parseInt(this.state.squaredMeters)})
-        }
-
-        handleResults = (event) => {
-            event.preventDefault();
-            this.setState((previousState) => ({ ...previousState, results: this.state.result }))
-        }
-
-        handleTotalTonnage = (event) => {
-            event.preventDefault();
-            this.setState((previousState) => ({ ...previousState, totalTonnage: this.state.totalTonnage }))
-        }
-
- 
-
-        render() {
         return (
             
             <div>
@@ -52,26 +27,22 @@ class Tonnage extends React.Component {
 
                 <h4>Asphalt Height(mm)</h4>
 
-                <input type="number" value={this.state.asphaltHeight} onChange={this.handleAsphaltHeight}  placeholder="enter height in mm..."/>
+                <input type="number" value={asphaltHeight} onChange={(e) => setAsphaltHeight(e.target.value)}  placeholder="enter height in mm..."/>
 
                 <h4>Meters Squared</h4>
 
-                <input type="number" value={this.state.squaredMeters} onChange={this.handleSquaredMeters}  placeholder="enter meters squared..."/>
+                <input type="number" value={squaredMeters} onChange={(e) => setSquaredMeters(e.target.value)}  placeholder="enter meters squared..."/>
                 </div>
                 
-                <div>
-                    <button onClick= {this.calculateTonnage} type="submit">Add</button>
-                </div>
+
                 <h4><b>Tonnes:</b></h4>
 
-                {this.state.tonnage}
+                {tonnage}
 
-                {/* <button onClick={this.handleResults} type="submit">Add</button> */}
+                <div><button onClick={totalTonnage} type="submit">Add</button></div>
 
-                <h5><b>Total Tonnage:</b></h5>
-
-                <li>{this.state.results.push(parseFloat(this.state.tonnage))}</li>
-
+                <h5><b>Total Tonnage:</b></h5>            
+                    {totalTonnage()}
                 <h5><b>Estimated Cost:</b></h5>
 
             </form>
@@ -79,7 +50,4 @@ class Tonnage extends React.Component {
         )
     
     }
-}
 
- 
-export default Tonnage; 

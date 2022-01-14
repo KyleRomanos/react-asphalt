@@ -11,9 +11,10 @@ export default function Calculation() {
     useEffect(() => {
         const newFeetSquared = parseInt(length) * parseInt(width);
         const newMetersSquared = parseInt(length) * parseInt(width) / 10.76;
+        if(length && width) {
         setFeetSquared(newFeetSquared);
         setMetersSquared(newMetersSquared);
-    },[length, width]);
+    }},[length, width]);
 
     return (
             <div>
