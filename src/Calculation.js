@@ -7,6 +7,7 @@ export default function Calculation() {
     const [feetSquared, setFeetSquared] = useState('');
     const [metersSquared, setMetersSquared] = useState('');
     const [triangleMeasurement, setTriangleMeasurement] = useState(false);
+    const [ priceEstimate, setPriceEstimate] = useState('HL1')
     
 
     // useEffect is a Hook, it will be called everytime 'length' or 'width' change.
@@ -28,14 +29,14 @@ export default function Calculation() {
                     </div>
                     <div>
                     <select id="operator">
-                      <option value="HL1">HL 1</option>
-                      <option value="HL2">HL 2</option>
-                      <option value="HL3">HL 3</option>
-                      <option value="HL3Fine">HL 3 Fine</option>
-                      <option value="HL4">HL 4</option>
-                      <option value="HL4Fine">HL 4 Fine</option>
-                      <option value="HL5">HL 5</option>
-                      <option value="HL8">HL 8</option>Select Asphalt Type
+                      <option value="HL1">HL-1</option>
+                      <option value="HL2">HL-2</option>
+                      <option value="HL3">HL-3</option>
+                      <option value="HL3Fine">HL-3 Fine</option>
+                      <option value="HL4">HL-4</option>
+                      <option value="HL4Fine">HL-4 Fine</option>
+                      <option value="HL5">HL-5</option>
+                      <option value="HL8">HL-8</option>Select Asphalt Type
                     </select>
                     </div>
                 <h4>Length</h4>
@@ -48,7 +49,7 @@ export default function Calculation() {
                 </div>
                 </form>
                 <h4><b>Feet Squared:</b></h4>
-                { triangleMeasurement ? feetSquared / 2 : feetSquared}
+                {triangleMeasurement ? feetSquared / 2 : feetSquared}
                 <h4><b>Meters Squared:</b></h4>
                 {triangleMeasurement ? metersSquared / 2 : metersSquared}
             </div>

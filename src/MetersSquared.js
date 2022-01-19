@@ -19,7 +19,7 @@ export default function MetersSquared() {
         return (
             
             <div>
-                <h3>Feet Squared</h3>
+                <h4>Feet Squared</h4>
             <form>
                 <div>
                 <input type="number" value={feetSquared} onChange={(e) => setFeetSquared(e.target.value)} placeholder="enter feet squared"/>
