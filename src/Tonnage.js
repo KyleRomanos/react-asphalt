@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
-// import { render } from 'react-dom';
+import useLocalStorage from './UseLocalStorage';
 
+//use state
 export default function Tonnage() {
 
     const [asphaltHeight, setAsphaltHeight] = useState('');
     const [squaredMeters, setSquaredMeters] = useState('');
     const [tonnes, setTonnes] = useState([])
-    const [items, setItems] = useState([])
-    // const [totalTonnage, setTotalTonnage] = useState([])
+    const [items, setItems] = useLocalStorage("items", [])
+   
+   
  
   
-
+//use effect main tonnes calculation
     useEffect(() => {
         const calculateTonnes = parseFloat(0.000246).toPrecision(3) * parseInt(asphaltHeight) * 10 * parseInt(squaredMeters)
         if(asphaltHeight && squaredMeters) {
@@ -20,66 +22,44 @@ export default function Tonnage() {
 
 }, [asphaltHeight, squaredMeters])
 
- 
-const addItem = () => {
+//click event that adds calculation to list 
+const addItem = (event) => {
+    event.preventDefault()
     setItems([...items, {
         id: items.length,
         value: tonnes.toPrecision(3)
     }])
-
+   
  }
 
-console.log(items)
+//  localStorage.setItem('items', JSON.stringify(items))
+//  const localData = () => {
+//     localStorage.getItem(items)
+//     return localData
+//  } 
+ 
 
+
+
+///total tonnage calculated from list above 
 const totalTonnage = items.reduce((total, item) => {
-    return parseInt(total + parseInt(item.value))
+    return parseInt(total + parseInt(item.value).toPrecision())
 }, 0)
 
-console.log(totalTonnage)
 
 
-//  const totalTonnage = (this.state.items.reduce((previousState, currentState) => previousState = previousState + currentState.value, 0))
+//delete item from list
 
+const deleteItem = (id) => {
+   const updatedItems = [...items].filter((item) => item.id !== id) 
+   setItems([...updatedItems])
+}
 
- 
+const resetBtn = (event) => {
+    localStorage.clear(); 
+    window.location.reload();
+}
 
-
-
- 
-// function calculateResults() {
-//     setResults([...results.length])
-// }
-
-
-// function addResult(event) {
-//     event.preventDefault();
-//     results.push(parseFloat(tonnes))
-//     console.log(results)
-//     setResults(results)
-//     return results
-// }
-// addResult = () => {
-//     setResults([...results, {
-//         id: results.length,
-//         value: results.reduce((previousState, currentState) => previousState + currentState)
-//     }])
-// }
-
-    // const totalTonnage = (event) => {
-    //     event.preventDefault()
-    //     results.push(parseFloat(tonnage))
-
-    //     let totalTonnage = results.map((result) => `<li>${result}</li>`).join('');
-    //    totalTonnage += `<b><li><h5>Total Tonnage:<h5></b><p> ${results.reduce((previousValue, currentValue) => previousValue + currentValue)}<p></li>`
-    //     setResults(totalTonnage)
-        
-    // }
-
-    // const handleClick = (e) => {
-    //     e.preventDefault()
-    //     const results = parseFloat(0.000246).toPrecision(3) * parseInt(asphaltHeight) * 10 * parseInt(squaredMeters)
-    //     setResults([...results, parseFloat(results).toPrecision(3)])
-    // }
 
         return (
             
@@ -108,7 +88,7 @@ console.log(totalTonnage)
             
             <ul>
                 {items.map(item => (
-                    <li key={item.id}>{item.value}</li>
+                    <li key={item.id}>{item.value} <button onClick={() => deleteItem(item.id)}>X</button></li>
                     
                 ))}
             </ul>
@@ -122,10 +102,14 @@ console.log(totalTonnage)
                 ${totalTonnage * 65} 
              </div>
 
+             <div>
+                 <button onClick={resetBtn}>Reset</button>
+             </div>
+
         </div>
         
             </div>
         )
+
     
     }
-
