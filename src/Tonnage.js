@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import useLocalStorage from './UseLocalStorage';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button';
 
 //use state
 export default function Tonnage() {
@@ -14,10 +16,10 @@ export default function Tonnage() {
   
 //use effect main tonnes calculation
     useEffect(() => {
-        const calculateTonnes = parseFloat(0.000246).toPrecision(3) * parseInt(asphaltHeight) * 10 * parseInt(squaredMeters)
+        const calculateTonnes = parseFloat(0.000246) * parseInt(asphaltHeight) * 10 * parseInt(squaredMeters)
         if(asphaltHeight && squaredMeters) {
            
-            setTonnes(calculateTonnes)    
+            setTonnes(calculateTonnes)  
     }
 
 }, [asphaltHeight, squaredMeters])
@@ -27,7 +29,7 @@ const addItem = (event) => {
     event.preventDefault()
     setItems([...items, {
         id: items.length,
-        value: tonnes.toPrecision(3)
+        value: tonnes
     }])
    
  }
@@ -43,7 +45,7 @@ const addItem = (event) => {
 
 ///total tonnage calculated from list above 
 const totalTonnage = items.reduce((total, item) => {
-    return parseInt(total + parseInt(item.value).toPrecision())
+    return (total + (item.value))
 }, 0)
 
 
@@ -55,10 +57,12 @@ const deleteItem = (id) => {
    setItems([...updatedItems])
 }
 
-const resetBtn = (event) => {
+const resetBtn = () => {
     localStorage.clear(); 
     window.location.reload();
 }
+
+
 
 
         return (
@@ -67,43 +71,43 @@ const resetBtn = (event) => {
             <form>
                 <div>
 
-                <h4>Asphalt Height(mm)</h4>
+                <h4 className="input"><b>Asphalt Height(mm)</b></h4>
 
-                <input type="number" value={asphaltHeight} onChange={(e) => setAsphaltHeight(e.target.value)}  placeholder="enter height in mm..."/>
+                <input className="input-class" required type="number" value={asphaltHeight} onChange={(e) => setAsphaltHeight(e.target.value)}  placeholder="enter height in mm..." />
 
-                <h4>Meters Squared</h4>
+                <h4 className="input"><b>Meters Squared</b></h4>
 
-                <input type="number" value={squaredMeters} onChange={(e) => setSquaredMeters(e.target.value)}  placeholder="enter meters squared..."/>
+                <input className="input-class" required type="number" value={squaredMeters} onChange={(e) => setSquaredMeters(e.target.value)}  placeholder="enter meters squared..." />
                 </div>
                 
 
-                <h4><b>Tonnes:</b></h4>
-                {tonnes}
+                <h4 className="output-reference"><b>Tonnes:</b></h4>
+                <div className="output">{tonnes}</div>
 
             </form>
 
            
         <div>
-            <button onClick={addItem}>Add</button>
+            <Button variant="primary" size="lg" className="mb-2" class onClick={addItem}>Add</Button>
             
             <ul>
                 {items.map(item => (
-                    <li key={item.id}>{item.value} <button onClick={() => deleteItem(item.id)}>X</button></li>
+                    <li key={item.id}>{item.value} <Button variant="outline-danger" size="sm" className="delete" onClick={() => deleteItem(item.id)}>Del</Button></li>
                     
                 ))}
             </ul>
 
-            <h4><b>Total Tonnage:</b></h4>
-             <div>
-                 {totalTonnage}
+            <h4 className="output-reference"><b>Total Tonnage:</b></h4>
+             <div className="output">
+                 <h3>{totalTonnage}</h3>
              </div>
-                <h4><b>Estimated Cost:</b></h4>
-             <div>
-                ${totalTonnage * 65} 
+                <h4 className="output-reference"><b>Estimated Cost:</b></h4>
+             <div className="output">
+                ${totalTonnage.toPrecision(3) * 65} 
              </div>
 
              <div>
-                 <button onClick={resetBtn}>Reset</button>
+                 <Button variant="warning" onClick={resetBtn}>Reset</Button>{' '}
              </div>
 
         </div>

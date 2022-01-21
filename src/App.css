@@ -1,35 +1,90 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
+
 .App {
   text-align: center;
   font-family: 'Bebas Neue', sans-serif;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
   font-size: large;
+  padding: -1px;
+  background: rgb(45, 45, 48);
 }
 
 
-
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+body{
+  margin-top: 10px;
+  background: rgb(45, 45, 48);
+  color: rgb(247, 127, 57);
 }
 
-.App-link {
-  color: #61dafb;
+
+.title, h1 {
+  color: rgb(255, 174, 0);
+  padding-bottom: 5px;
+  padding-top: 20px;
+  background-color: black;
+  margin-bottom: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+h4 {
+  text-align: center;
+}
+
+li {
+  color: whitesmoke;
+  padding: 1px;
+  /* margin-top: 2px; */
+  text-align: right;
+}
+
+.triangle {
+  color: rgb(13, 215, 241);
+}
+
+.output {
+  color: rgb(64, 218, 64);
+  margin-top: 0px;
+  margin-bottom: 10px;
+  padding: 2px;
+}
+
+.output-reference {
+  color: rgb(13, 215, 241);
+  margin: 5px;
+}
+
+.input {
+  color: rgb(247, 127, 57);
+  margin: 5px;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 25px
+}
+
+.reset {
+  border-radius: 6px;
+
+}
+
+.primary {
+  background-color: blue;
+  border-radius: 6px;
+}
+
+.delete {
+  border-radius: 5px;
+  margin-left: 20px;
+  background-color: rgb(255, 174, 0);
+}
+
+.input-class {
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.delete {
+  padding-left: 100px;
 }

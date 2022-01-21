@@ -7,23 +7,24 @@ export default function Calculation() {
     const [feetSquared, setFeetSquared] = useState('');
     const [metersSquared, setMetersSquared] = useState('');
     const [triangleMeasurement, setTriangleMeasurement] = useState(false);
-    const [ priceEstimate, setPriceEstimate] = useState('HL1')
+    
     
 
     // useEffect is a Hook, it will be called everytime 'length' or 'width' change.
     useEffect(() => {
         const newFeetSquared = parseInt(length) * parseInt(width);
-        const newMetersSquared = parseInt(length) * parseInt(width) / 10.76;
+        const newMetersSquared = parseInt(length) * parseInt(width)/ 10.76;
         
         if(length && width) {
 
         setFeetSquared(newFeetSquared);
         setMetersSquared(newMetersSquared);
-    }},[length, width]);
+    }
+},[length, width]);
 
     return (
             <div>
-                    <div>Triangle Measurement? {triangleMeasurement}
+                    <div className="triangle">Triangle Measurement? {triangleMeasurement}
                     <input type="checkbox" name="triangle" onChange={(e) =>{setTriangleMeasurement(e.target.checked) }}/> 
                     
                     </div>
@@ -39,19 +40,20 @@ export default function Calculation() {
                       <option value="HL8">HL-8</option>Select Asphalt Type
                     </select>
                     </div>
-                <h4>Length</h4>
-                <form>
+                
+                <form className="length-width">
+                <h4 className="input"><b>Length</b></h4>
                     <div>
-                    <input type="number" value={length} onChange={(e) => setLength(e.target.value)} placeholder="enter length in ft..."/>
+                    <input className="input-class" type="number" value={length} onChange={(e) => setLength(e.target.value)} placeholder="enter length in ft..." />
                
-                    <h4>Width</h4>
-                    <input type="number" value={width} onChange={(e) => setWidth(e.target.value)} placeholder="enter width in ft..." />
+                <h4 className="input"><b>Width</b></h4>
+                    <input className="input-class" type="number" value={width} onChange={(e) => setWidth(e.target.value)} placeholder="enter width in ft..." />
                 </div>
                 </form>
-                <h4><b>Feet Squared:</b></h4>
-                {triangleMeasurement ? feetSquared / 2 : feetSquared}
-                <h4><b>Meters Squared:</b></h4>
-                {triangleMeasurement ? metersSquared / 2 : metersSquared}
+                <h4 className="output-reference"><b>Feet Squared:</b></h4>
+                <div className="output">{triangleMeasurement ? feetSquared / 2 : feetSquared}</div>
+                <h4 className="output-reference"><b>Meters Squared:</b></h4>
+                <div className="output">{triangleMeasurement ? metersSquared / 2 : metersSquared}</div>
             </div>
     )
 

@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from 'react';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function MetersSquared() {
 
@@ -19,13 +19,13 @@ export default function MetersSquared() {
         return (
             
             <div>
-                <h4>Feet Squared</h4>
+                <h4 className="input"><b>Feet Squared</b></h4>
             <form>
                 <div>
-                <input type="number" value={feetSquared} onChange={(e) => setFeetSquared(e.target.value)} placeholder="enter feet squared"/>
+                <input className="input-class" type="number" value={feetSquared} onChange={(e) => setFeetSquared(e.target.value)} placeholder="enter feet squared"/>
                 </div>
-                <h4><b>Meters Squared:</b></h4>
-            {metersSquared}
+                <h4 className="output-reference"><b>Meters Squared:</b></h4>
+            <div className="output">{metersSquared}</div>
             </form>
             </div>
         )
