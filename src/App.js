@@ -12,11 +12,11 @@ const App =() => {
   return (
     <div className="App">
       <h1 className="title"><b>Asphalt Calculator</b></h1>
-      <form className="form-main">
+     
       <Calculation /> 
       <MetersSquared />
       <Tonnage />
-      </form>
+    
       
     </div>
   );

@@ -24,7 +24,7 @@ export default function Calculation() {
 
     return (
             <div>
-                    <div className="triangle">Triangle Measurement? {triangleMeasurement}
+                    <div className="triangle"><h4></h4>Triangle Measurement? {triangleMeasurement}
                     <input type="checkbox" name="triangle" onChange={(e) =>{setTriangleMeasurement(e.target.checked) }}/> 
                     
                     </div>

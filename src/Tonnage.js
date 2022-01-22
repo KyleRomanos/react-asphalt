@@ -17,7 +17,7 @@ export default function Tonnage() {
 //use effect main tonnes calculation
     useEffect(() => {
         const calculateTonnes = parseFloat(0.000246) * parseInt(asphaltHeight) * 10 * parseInt(squaredMeters)
-        if(asphaltHeight && squaredMeters) {
+        if(asphaltHeight && squaredMeters > 0) {
            
             setTonnes(calculateTonnes)  
     }
@@ -27,10 +27,15 @@ export default function Tonnage() {
 //click event that adds calculation to list 
 const addItem = (event) => {
     event.preventDefault()
+    if (asphaltHeight && squaredMeters > 0) {
     setItems([...items, {
         id: items.length,
         value: tonnes
+    
     }])
+} else {
+    alert('please enter asphalt height and meters squared!')
+}
    
  }
 
@@ -71,43 +76,43 @@ const resetBtn = () => {
             <form>
                 <div>
 
-                <h4 className="input"><b>Asphalt Height(mm)</b></h4>
+                <h4 className="input"><b>Asphalt Height (mm)</b></h4>
 
-                <input className="input-class" required type="number" value={asphaltHeight} onChange={(e) => setAsphaltHeight(e.target.value)}  placeholder="enter height in mm..." />
+                <input type="number" className="input-class" value={asphaltHeight} onChange={(e) => setAsphaltHeight(e.target.value)}  placeholder="enter height in mm..." required />
 
                 <h4 className="input"><b>Meters Squared</b></h4>
 
-                <input className="input-class" required type="number" value={squaredMeters} onChange={(e) => setSquaredMeters(e.target.value)}  placeholder="enter meters squared..." />
+                <input type="number" className="input-class" value={squaredMeters} onChange={(e) => setSquaredMeters(e.target.value)}  placeholder="enter meters squared..." />
                 </div>
                 
 
                 <h4 className="output-reference"><b>Tonnes:</b></h4>
-                <div className="output">{tonnes}</div>
+                <div className="output">{tonnes + 0}</div>
 
             </form>
 
            
         <div>
-            <Button variant="primary" size="lg" className="mb-2" class onClick={addItem}>Add</Button>
+            <Button variant="outline-primary" size="lg" className="mb-2" onClick={addItem}>Add</Button>
             
             <ul>
                 {items.map(item => (
-                    <li key={item.id}>{item.value} <Button variant="outline-danger" size="sm" className="delete" onClick={() => deleteItem(item.id)}>Del</Button></li>
+                    <li key={item.id}>{item.value} <Button variant="outline-danger" size="sm" className="delete" onDoubleClick={() => deleteItem(item.id)}>Del</Button></li>
                     
                 ))}
             </ul>
 
             <h4 className="output-reference"><b>Total Tonnage:</b></h4>
-             <div className="output">
+             <div className="output2">
                  <h3>{totalTonnage}</h3>
              </div>
                 <h4 className="output-reference"><b>Estimated Cost:</b></h4>
-             <div className="output">
+             <div className="output2">
                 ${totalTonnage.toPrecision(3) * 65} 
              </div>
 
              <div>
-                 <Button variant="warning" onClick={resetBtn}>Reset</Button>{' '}
+                 <Button variant="outline-warning" size="lg" className="reset" onDoubleClick={resetBtn}>Reset</Button>
              </div>
 
         </div>

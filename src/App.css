@@ -15,6 +15,7 @@ body{
   margin-top: 10px;
   background: rgb(45, 45, 48);
   color: rgb(247, 127, 57);
+  margin-bottom: 10px;
 }
 
 
@@ -36,21 +37,30 @@ li {
   padding: 1px;
   /* margin-top: 2px; */
   text-align: right;
+  list-style: none;
+  margin-right: 20px;
 }
 
 .triangle {
-  color: rgb(13, 215, 241);
+  color: rgb(247, 127, 57);
+  font-weight: bold;
+  font-size: 23px;
 }
 
 .output {
-  color: rgb(64, 218, 64);
+  color: rgb(13, 215, 241);
   margin-top: 0px;
   margin-bottom: 10px;
   padding: 2px;
 }
 
 .output-reference {
-  color: rgb(13, 215, 241);
+  color: rgb(247, 127, 57);
+  margin: 5px;
+}
+
+.output2 {
+  color: rgb(64, 218, 64);
   margin: 5px;
 }
 
@@ -66,18 +76,7 @@ button {
 
 .reset {
   border-radius: 6px;
-
-}
-
-.primary {
-  background-color: blue;
-  border-radius: 6px;
-}
-
-.delete {
-  border-radius: 5px;
-  margin-left: 20px;
-  background-color: rgb(255, 174, 0);
+  margin-bottom: 3px;
 }
 
 .input-class {
@@ -87,4 +86,8 @@ button {
 
 .delete {
   padding-left: 100px;
+}
+
+.form-main {
+ padding-bottom: 10px;
 }
