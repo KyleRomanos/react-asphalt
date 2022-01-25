@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import useLocalStorage from './UseLocalStorage';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
+import  Button  from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal'
 
 //use state
 export default function Tonnage() {
@@ -10,9 +11,11 @@ export default function Tonnage() {
     const [squaredMeters, setSquaredMeters] = useState('');
     const [tonnes, setTonnes] = useState([])
     const [items, setItems] = useLocalStorage("items", [])
+    const [resetShow, setResetShow] = useState(false);
    
-   
- 
+// Reset Button Modal functions
+    const handleResetClose = () => setResetShow(false);
+    const handleResetShow = () => setResetShow(true)
   
 //use effect main tonnes calculation
     useEffect(() => {
@@ -39,15 +42,6 @@ const addItem = (event) => {
    
  }
 
-//  localStorage.setItem('items', JSON.stringify(items))
-//  const localData = () => {
-//     localStorage.getItem(items)
-//     return localData
-//  } 
- 
-
-
-
 ///total tonnage calculated from list above 
 const totalTonnage = items.reduce((total, item) => {
     return (total + (item.value))
@@ -62,6 +56,7 @@ const deleteItem = (id) => {
    setItems([...updatedItems])
 }
 
+//ResetButton function 
 const resetBtn = () => {
     localStorage.clear(); 
     window.location.reload();
@@ -71,18 +66,18 @@ const resetBtn = () => {
 
 
         return (
-            
+            <>
             <div>
             <form>
                 <div>
 
-                <h4 className="input"><b>Asphalt Height (mm)</b></h4>
+                <h4 className="input"><b>Height (mm)</b> <input type="number" className="input-class-lg" value={asphaltHeight} onChange={(e) => setAsphaltHeight(e.target.value)}  placeholder="enter height in mm..." required /></h4>
 
-                <input type="number" className="input-class" value={asphaltHeight} onChange={(e) => setAsphaltHeight(e.target.value)}  placeholder="enter height in mm..." required />
+               
 
-                <h4 className="input"><b>Meters Squared</b></h4>
+                <h4 className="input"><b>Meters Squared</b> <input type="number" className="input-class-lg" value={squaredMeters} onChange={(e) => setSquaredMeters(e.target.value)}  placeholder="enter meters squared..." /></h4>
 
-                <input type="number" className="input-class" value={squaredMeters} onChange={(e) => setSquaredMeters(e.target.value)}  placeholder="enter meters squared..." />
+               
                 </div>
                 
 
@@ -97,11 +92,22 @@ const resetBtn = () => {
             
             <ul>
                 {items.map(item => (
-                    <li key={item.id}>{item.value} <Button variant="outline-danger" size="sm" className="delete" onDoubleClick={() => deleteItem(item.id)}>Del</Button></li>
-                    
-                ))}
-            </ul>
+                    <li key={item.id}>{item.value} <Button variant="outline-danger" size="sm" className="delete" onClick={() => deleteItem(item.id)}>Del</Button>
 
+                    
+                    </li>
+
+                    
+                    
+                )
+                
+                )}
+
+                    
+
+                {/* //onDoubleClick={() => deleteItem(item.id)}// */}
+            </ul>
+                   
             <h4 className="output-reference"><b>Total Tonnage:</b></h4>
              <div className="output2">
                  <h3>{totalTonnage}</h3>
@@ -110,14 +116,39 @@ const resetBtn = () => {
              <div className="output2">
                 ${totalTonnage.toPrecision(3) * 65} 
              </div>
-
+             
              <div>
-                 <Button variant="outline-warning" size="lg" className="reset" onDoubleClick={resetBtn}>Reset</Button>
-             </div>
+              
+                 <Button variant="outline-warning" size="lg" className="reset" onClick={handleResetShow}>Reset</Button>
 
+                 <Modal
+                 show={resetShow}
+                 onHide={handleResetClose}
+                 backdrop="static"
+                 keyboard={false}
+                 >
+
+                     <Modal.Header className="modal-header">
+                         <Modal.Title>Reset</Modal.Title>
+                     </Modal.Header>
+                     <Modal.Body className="modal-body">
+                         Are you sure you want to reset calculator?
+                     </Modal.Body>
+                     <Modal.Footer className="modal-footer">
+                         <Button className="cancel-btn" variant="outline-light" onClick={handleResetClose}>
+                             Cancel
+                         </Button>
+                         <Button className="reset-reset-btn" variant="outline-warning" onClick={resetBtn}>
+                             Reset
+                         </Button>
+                     </Modal.Footer>
+                 </Modal>
+             </div>
+            
         </div>
         
             </div>
+            </>
         )
 
     

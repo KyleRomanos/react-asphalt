@@ -4,33 +4,28 @@
 .App {
   text-align: center;
   font-family: 'Bebas Neue', sans-serif;
-  letter-spacing: 1.2px;
+  letter-spacing: 2px;
   font-size: large;
-  padding: -1px;
   background: rgb(45, 45, 48);
 }
 
 
 body{
-  margin-top: 10px;
   background: rgb(45, 45, 48);
   color: rgb(247, 127, 57);
-  margin-bottom: 10px;
+
 }
 
 
-.title, h1 {
+.title {
   color: rgb(255, 174, 0);
-  padding-bottom: 5px;
+  padding-bottom: 12px;
   padding-top: 20px;
   background-color: black;
   margin-bottom: 10px;
 }
 
 
-h4 {
-  text-align: center;
-}
 
 li {
   color: whitesmoke;
@@ -44,11 +39,16 @@ li {
 .triangle {
   color: rgb(247, 127, 57);
   font-weight: bold;
-  font-size: 23px;
+  font-size: 22px;
+  margin: 5px;
+  padding-left: 130px;
+  text-align: center;
+ 
 }
 
 .output {
-  color: rgb(13, 215, 241);
+  color: rgb(64, 218, 64);
+  
   margin-top: 0px;
   margin-bottom: 10px;
   padding: 2px;
@@ -59,14 +59,20 @@ li {
   margin: 5px;
 }
 
+.select {
+  margin-left: 5px;
+}
+
 .output2 {
   color: rgb(64, 218, 64);
-  margin: 5px;
+  margin: 1px;
 }
 
 .input {
   color: rgb(247, 127, 57);
-  margin: 5px;
+  margin-bottom: 12px;
+  padding-left: 140px;
+  text-align: left;
 }
 
 button {
@@ -76,12 +82,20 @@ button {
 
 .reset {
   border-radius: 6px;
-  margin-bottom: 3px;
+  margin-bottom: 10px;
+  
 }
 
 .input-class {
+ 
+  width: 100px;
+  margin-left: 3px;
+}
+
+.input-class-lg {
+  margin-left: -2px;
   margin-top: -10px;
-  margin-bottom: 10px;
+  width: 100px;
 }
 
 .delete {
@@ -90,4 +104,38 @@ button {
 
 .form-main {
  padding-bottom: 10px;
+}
+
+.modal-header {
+  font-family: 'Bebas Neue', sans-serif;
+ background-color: rgb(45, 45, 48);
+ color: whitesmoke;
+ letter-spacing: 1.5px;
+ font-size: large;
+ border: 1px solid whitesmoke
+}
+
+.modal-body {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px;
+  font-size: large;
+}
+
+.modal-footer {
+  font-family: 'Bebas Neue', sans-serif;
+  background-color: rgb(45, 45, 48);
+  color: whitesmoke;
+  letter-spacing: 1.5px;
+  font-size: large;
+  border: 1px solid whitesmoke
+}
+
+.cancel-btn {
+  letter-spacing: 1.5px;
+  font-size: large;
+}
+
+.reset-reset-btn {
+  letter-spacing: 1.5px;
+  font-size: large;
 }

@@ -29,7 +29,7 @@ export default function Calculation() {
                     
                     </div>
                     <div>
-                    <select id="operator">
+                    <h4 className="input"><b>Asphalt Type</b><select id="operator" className="select">
                       <option value="HL1">HL-1</option>
                       <option value="HL2">HL-2</option>
                       <option value="HL3">HL-3</option>
@@ -38,16 +38,18 @@ export default function Calculation() {
                       <option value="HL4Fine">HL-4 Fine</option>
                       <option value="HL5">HL-5</option>
                       <option value="HL8">HL-8</option>Select Asphalt Type
-                    </select>
+                    </select></h4>
+
                     </div>
                 
                 <form className="length-width">
-                <h4 className="input"><b>Length</b></h4>
-                    <div>
-                    <input className="input-class" type="number" value={length} onChange={(e) => setLength(e.target.value)} placeholder="enter length in ft..." />
+                <div>
+                <h4 className="input" ><b>Length</b><input className="input-class" type="number" value={length} onChange={(e) => setLength(e.target.value)} placeholder="enter length in ft..." /></h4>
+                   
+             
                
-                <h4 className="input"><b>Width</b></h4>
-                    <input className="input-class" type="number" value={width} onChange={(e) => setWidth(e.target.value)} placeholder="enter width in ft..." />
+                <h4 className="input"><b>Width</b> <input className="input-class-lg" type="number" value={width} onChange={(e) => setWidth(e.target.value)} placeholder="enter width in ft..." /></h4>
+                   
                 </div>
                 </form>
                 <h4 className="output-reference"><b>Feet Squared:</b></h4>

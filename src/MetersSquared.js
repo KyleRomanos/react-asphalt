@@ -19,11 +19,11 @@ export default function MetersSquared() {
         return (
             
             <div>
-                <h4 className="input"><b>Feet Squared</b></h4>
-            <form>
-                <div>
-                <input className="input-class" type="number" value={feetSquared} onChange={(e) => setFeetSquared(e.target.value)} placeholder="enter feet squared"/>
-                </div>
+                <form>
+                <h4 className="input"><b>Feet Squared</b><input className="input-class" type="number" value={feetSquared} onChange={(e) => setFeetSquared(e.target.value)} placeholder="enter feet squared"/></h4>
+            
+                
+               
                 <h4 className="output-reference"><b>Meters Squared:</b></h4>
             <div className="output">{metersSquared}</div>
             </form>
