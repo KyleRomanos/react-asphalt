@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import useLocalStorage from './UseLocalStorage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import  Button  from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal'
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
+import ListGroup from 'react-bootstrap/ListGroup'
+import Card from 'react-bootstrap/Card'
 
 //use state
 export default function Tonnage() {
@@ -12,6 +15,9 @@ export default function Tonnage() {
     const [tonnes, setTonnes] = useState([])
     const [items, setItems] = useLocalStorage("items", [])
     const [resetShow, setResetShow] = useState(false);
+    const [asphaltType, setAsphaltType] = useState("")
+    const [wasteAllowance, setWasteAllowance] = useState("")
+    
    
 // Reset Button Modal functions
     const handleResetClose = () => setResetShow(false);
@@ -62,64 +68,129 @@ const resetBtn = () => {
     window.location.reload();
 }
 
-
-
-
+// default type for asphalt selector
+const defaultType = [
+    {label: 'Default', value: '65'}
+]
         return (
             <>
-            <div>
-            <form>
-                <div>
-
-                <h4 className="input"><b>Height (mm)</b> <input type="number" className="input-class-lg" value={asphaltHeight} onChange={(e) => setAsphaltHeight(e.target.value)}  placeholder="enter height in mm..." required /></h4>
-
-               
-
-                <h4 className="input"><b>Meters Squared</b> <input type="number" className="input-class-lg" value={squaredMeters} onChange={(e) => setSquaredMeters(e.target.value)}  placeholder="enter meters squared..." /></h4>
-
-               
-                </div>
+            <Form>
                 
+            <Form.Group className="mb-3" controlId="height">
+            <Form.Label>Height (mm)</Form.Label>
+                <Form.Control type="number" className="input-class-lg" value={asphaltHeight} onChange={(e) => setAsphaltHeight(e.target.value)}  placeholder="Enter Height in millimeters..." required />
+                </Form.Group>
+               
+                <Form.Group className="mb-3" controlId="squared-meters">
+                <Form.Label>Meters Squared</Form.Label>
+                <Form.Control type="number" className="input-class-lg" value={squaredMeters} onChange={(e) => setSquaredMeters(e.target.value)}  placeholder="Meters Sq." />
+                </Form.Group>
 
-                <h4 className="output-reference"><b>Tonnes:</b></h4>
-                <div className="output">{tonnes + 0}</div>
-
-            </form>
-
-           
-        <div>
-            <Button variant="outline-primary" size="lg" className="mb-2" onClick={addItem}>Add</Button>
-            
-            <ul>
-                {items.map(item => (
-                    <li key={item.id}>{item.value} <Button variant="outline-danger" size="sm" className="delete" onClick={() => deleteItem(item.id)}>Del</Button>
-
-                    
-                    </li>
-
-                    
-                    
-                )
-                
-                )}
-
-                    
-
-                {/* //onDoubleClick={() => deleteItem(item.id)}// */}
-            </ul>
-                   
-            <h4 className="output-reference"><b>Total Tonnage:</b></h4>
-             <div className="output2">
-                 <h3>{totalTonnage}</h3>
-             </div>
-                <h4 className="output-reference"><b>Estimated Cost:</b></h4>
-             <div className="output2">
-                ${totalTonnage.toPrecision(3) * 65} 
-             </div>
+                <Form.Group className="mb-3" controlId="asphalt-type" onChange={(e) => {
+                    const asphaltType = e.target.value;
+                    if (asphaltType !== null) {
+                    setAsphaltType(asphaltType)   
+                }}}>   
+             <Form.Label>Select Asphalt Type</Form.Label>
              
-             <div>
-              
+             <Form.Select defaultValue={defaultType[0]}>
+                <option value="60">HL-1</option>
+                <option value="60">HL-2</option>
+                <option value ="65">HL-3</option>
+                <option value="70">HL-3 Fine</option>
+                <option value="65">HL-4</option>
+                <option value="65">HL-5</option>
+                <option value="65">HL-8</option>
+             </Form.Select>
+             <Form.Text className="text-muted">
+      Select Asphalt Type to generate estimated cost
+                </Form.Text>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="asphalt-waste" onChange={(e) => {
+                    const asphaltWaste = e.target.value;
+                    if (asphaltWaste !== null) {
+                    setWasteAllowance(asphaltWaste)   
+                }}}>   
+                 <Form.Label>Select Waste Allowance Percentage</Form.Label>
+                 <Form.Select>
+                <option value="0.01">1%</option>
+                <option value="0.02">2%</option>
+                <option value ="0.03">3%</option>
+                <option value="0.04">4%</option>
+                <option value="0.05">5%</option>
+                <option value="0.06">6%</option>
+                <option value="0.07">7%</option>
+                <option value="0.08">8%</option>
+                <option value="0.09">9%</option>
+                <option value ="0.10">10%</option>
+                <option value="0.11">11%</option>
+                <option value="0.12">12%</option>
+                <option value="0.13">13%</option>
+                <option value="0.14">14%</option>
+                <option value ="0.15">15%</option>
+                <option value="0.16">16%</option>
+                <option value="0.17">17%</option>
+                <option value="0.18">18%</option>
+                <option value="0.19">19%</option>
+                <option value="0.20">20%</option>
+             </Form.Select>
+             <Form.Text className="text-muted">
+                Select 10% if uncertain </Form.Text>
+           </Form.Group>
+               
+          
+                
+                <Form.Group className="total-tonnage-output" controlId="tonnes">
+                <Card border="primary">
+                <Card.Body>
+                <Card.Header as="h3">Tonnes:</Card.Header>
+                <Card.Text as="h4" className="tonnes-output-num">{tonnes}</Card.Text>
+                <Button variant="outline-primary" size="lg" className="add-btn" onClick={addItem}>Add</Button>
+                </Card.Body>
+                </Card>
+                </Form.Group>
+
+            <Form.Group className="list" controlId="tonnes">
+            <ListGroup>
+                {items.map(item => (
+                    <ListGroup.Item className="list-item" key={item.id}>{item.value.toPrecision(5)} <Button variant="outline-danger" size="sm" className="delete-btn" onClick={() => deleteItem(item.id)}>Del</Button>
+
+                    
+                    </ListGroup.Item> 
+                )
+                )}
+               
+            </ListGroup>
+            </Form.Group>
+                   
+            <Form.Group className="total-tonnage-output" controlId="tonnes-output">
+                <Card border="success">
+                <Card.Header as="h2">Total Tonnage:</Card.Header>
+                <Card.Body>
+                 <Card.Text as="h3">{totalTonnage.toPrecision(5)}</Card.Text>
+                </Card.Body>
+                </Card>
+
+                <Card className="waste-allowance" border="success">
+             <Card.Header as="h3">Waste Allowance:</Card.Header>
+             <Card.Body>
+                <Card.Text as="h4">{(totalTonnage * wasteAllowance + totalTonnage).toPrecision(5)} Tonnes</Card.Text>
+                </Card.Body>
+                </Card>
+               
+                <Card border="success">
+                <Card.Header as="h3">Estimated Cost:</Card.Header>
+                <Card.Body>
+                <Card.Text as="h4">${((totalTonnage).toPrecision(5) * 0.1 + totalTonnage) * asphaltType}</Card.Text>
+             
+             </Card.Body>
+             </Card>
+             </Form.Group>
+
+                <Form.Group className="reset-btn" controlId="tonnes">
                  <Button variant="outline-warning" size="lg" className="reset" onClick={handleResetShow}>Reset</Button>
+                </Form.Group>
 
                  <Modal
                  show={resetShow}
@@ -143,11 +214,12 @@ const resetBtn = () => {
                          </Button>
                      </Modal.Footer>
                  </Modal>
-             </div>
+          
             
-        </div>
+       
         
-            </div>
+        
+            </Form>
             </>
         )
 

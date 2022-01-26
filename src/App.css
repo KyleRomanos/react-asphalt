@@ -4,21 +4,22 @@
 .App {
   text-align: center;
   font-family: 'Bebas Neue', sans-serif;
-  letter-spacing: 2px;
+  letter-spacing: 0.5px;
   font-size: large;
   background: rgb(45, 45, 48);
+  
 }
 
 
 body{
   background: rgb(45, 45, 48);
-  color: rgb(247, 127, 57);
+  color: rgb(255, 174, 0);
 
 }
 
 
 .title {
-  color: rgb(255, 174, 0);
+  color: rgb(255, 187, 0);
   padding-bottom: 12px;
   padding-top: 20px;
   background-color: black;
@@ -26,54 +27,26 @@ body{
 }
 
 
-
-li {
-  color: whitesmoke;
-  padding: 1px;
-  /* margin-top: 2px; */
-  text-align: right;
-  list-style: none;
-  margin-right: 20px;
-}
-
-.triangle {
-  color: rgb(247, 127, 57);
-  font-weight: bold;
-  font-size: 22px;
-  margin: 5px;
-  padding-left: 130px;
-  text-align: center;
- 
-}
-
 .output {
   color: rgb(64, 218, 64);
-  
-  margin-top: 0px;
-  margin-bottom: 10px;
-  padding: 2px;
+  text-align: center;
 }
 
 .output-reference {
-  color: rgb(247, 127, 57);
+  color: rgb(255, 187, 0);
   margin: 5px;
-}
-
-.select {
-  margin-left: 5px;
+  text-align: center;
+ 
 }
 
 .output2 {
   color: rgb(64, 218, 64);
   margin: 1px;
+  margin-bottom: 10px;
+
+  text-align: center;
 }
 
-.input {
-  color: rgb(247, 127, 57);
-  margin-bottom: 12px;
-  padding-left: 140px;
-  text-align: left;
-}
 
 button {
   cursor: pointer;
@@ -82,29 +55,9 @@ button {
 
 .reset {
   border-radius: 6px;
-  margin-bottom: 10px;
-  
+  margin-bottom: 15px;
 }
 
-.input-class {
- 
-  width: 100px;
-  margin-left: 3px;
-}
-
-.input-class-lg {
-  margin-left: -2px;
-  margin-top: -10px;
-  width: 100px;
-}
-
-.delete {
-  padding-left: 100px;
-}
-
-.form-main {
- padding-bottom: 10px;
-}
 
 .modal-header {
   font-family: 'Bebas Neue', sans-serif;
@@ -138,4 +91,85 @@ button {
 .reset-reset-btn {
   letter-spacing: 1.5px;
   font-size: large;
+  display: flex;
+  justify-content: center;
+}
+
+.mb-3 {
+  color:rgb(255, 187, 0);
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+
+.output-form {
+  color: rgb(255, 187, 0);
+}
+
+.text-muted{
+  font-size: xx-small;
+  letter-spacing: 0.2px;
+}
+
+.bottom {
+  text-align: right;
+}
+
+.outline-primary {
+  margin-left: 20px;
+}
+
+.mb-2 {
+  align-items: center;
+  
+}
+
+.triangle{
+  margin-left: 20px;
+  text-align: left;
+  color: rgb(255, 187, 0);
+}
+
+
+.add-btn {
+  text-align: center;
+  margin-bottom: -5px;
+  margin-top: -15px;
+}
+
+.reset-btn {
+  text-align: center;
+}
+
+
+.list-item {
+  text-align: right;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.tonnes-output {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.tonnes-output-num {
+  padding-top: 10px;
+ padding-bottom: 10px;
+}
+
+.total-tonnage-output {
+  margin-left: 20px;
+ 
+  margin-right: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.waste-allowance {
+  margin-bottom: 10px;
+  margin-top: 10px;
 }

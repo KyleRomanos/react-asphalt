@@ -1,5 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Form from 'react-bootstrap/Form'
 
 export default function MetersSquared() {
 
@@ -18,16 +19,21 @@ export default function MetersSquared() {
 
         return (
             
-            <div>
-                <form>
-                <h4 className="input"><b>Feet Squared</b><input className="input-class" type="number" value={feetSquared} onChange={(e) => setFeetSquared(e.target.value)} placeholder="enter feet squared"/></h4>
+        
+                <Form>
+                <Form.Group className="mb-3" controlId="squared-meters">
+                <Form.Label>Feet Squared</Form.Label>
+                <Form.Control type="number" value={feetSquared} onChange={(e) => setFeetSquared(e.target.value)} placeholder="Only used if a direct conversion to Meters Squared is required" />
+      
+      </Form.Group>
             
                 
-               
-                <h4 className="output-reference"><b>Meters Squared:</b></h4>
-            <div className="output">{metersSquared}</div>
-            </form>
-            </div>
+      <Form.Group className="mb-3" controlId="squared-meters">
+            <Form.Label>Meters Squared:</Form.Label>
+            <Form.Control type="number" className="output" value={metersSquared} />
+            </Form.Group>
+            </Form>
+           
         )
         }
     
