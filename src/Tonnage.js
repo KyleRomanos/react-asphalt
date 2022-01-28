@@ -8,15 +8,15 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import Card from 'react-bootstrap/Card'
 
 //use state
-export default function Tonnage() {
+export default function Tonnage({metersSquared}) {
 
     const [asphaltHeight, setAsphaltHeight] = useState('');
     const [squaredMeters, setSquaredMeters] = useState('');
     const [tonnes, setTonnes] = useState([])
     const [items, setItems] = useLocalStorage("items", [])
     const [resetShow, setResetShow] = useState(false);
-    const [asphaltType, setAsphaltType] = useState("")
-    const [wasteAllowance, setWasteAllowance] = useState("")
+    const [asphaltType, setAsphaltType] = useState("65")
+    const [wasteAllowance, setWasteAllowance] = useState("0.10")
     
    
 // Reset Button Modal functions
@@ -32,6 +32,10 @@ export default function Tonnage() {
     }
 
 }, [asphaltHeight, squaredMeters])
+
+useEffect(() => {
+    setSquaredMeters(metersSquared)
+}, [metersSquared])
 
 //click event that adds calculation to list 
 const addItem = (event) => {
@@ -72,9 +76,11 @@ const resetBtn = () => {
 const defaultType = [
     {label: 'Default', value: '65'}
 ]
+
+
         return (
             <>
-            <Form>
+            <Form className="form">
                 
             <Form.Group className="mb-3" controlId="height">
             <Form.Label>Height (mm)</Form.Label>
@@ -83,17 +89,18 @@ const defaultType = [
                
                 <Form.Group className="mb-3" controlId="squared-meters">
                 <Form.Label>Meters Squared</Form.Label>
-                <Form.Control type="number" className="input-class-lg" value={squaredMeters} onChange={(e) => setSquaredMeters(e.target.value)}  placeholder="Meters Sq." />
+                <Form.Control type="string" className="input-class-lg" value={squaredMeters} onChange={(e) => setSquaredMeters(e.target.value)}  placeholder="Meters Sq." />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="asphalt-type" onChange={(e) => {
                     const asphaltType = e.target.value;
                     if (asphaltType !== null) {
                     setAsphaltType(asphaltType)   
-                }}}>   
+                }}}>
+
              <Form.Label>Select Asphalt Type</Form.Label>
              
-             <Form.Select defaultValue={defaultType[0]}>
+             <Form.Select >
                 <option value="60">HL-1</option>
                 <option value="60">HL-2</option>
                 <option value ="65">HL-3</option>
@@ -102,6 +109,7 @@ const defaultType = [
                 <option value="65">HL-5</option>
                 <option value="65">HL-8</option>
              </Form.Select>
+
              <Form.Text className="text-muted">
       Select Asphalt Type to generate estimated cost
                 </Form.Text>
@@ -114,47 +122,32 @@ const defaultType = [
                 }}}>   
                  <Form.Label>Select Waste Allowance Percentage</Form.Label>
                  <Form.Select>
-                <option value="0.01">1%</option>
-                <option value="0.02">2%</option>
-                <option value ="0.03">3%</option>
-                <option value="0.04">4%</option>
-                <option value="0.05">5%</option>
-                <option value="0.06">6%</option>
-                <option value="0.07">7%</option>
-                <option value="0.08">8%</option>
-                <option value="0.09">9%</option>
-                <option value ="0.10">10%</option>
-                <option value="0.11">11%</option>
-                <option value="0.12">12%</option>
-                <option value="0.13">13%</option>
-                <option value="0.14">14%</option>
-                <option value ="0.15">15%</option>
-                <option value="0.16">16%</option>
-                <option value="0.17">17%</option>
-                <option value="0.18">18%</option>
-                <option value="0.19">19%</option>
-                <option value="0.20">20%</option>
+                 {Array.from(Array(20).keys()).map((v) => {
+                    return <option key={v} value={(v + 1) * 0.01}>{`${v + 1}%`}</option>
+                    })}
              </Form.Select>
              <Form.Text className="text-muted">
                 Select 10% if uncertain </Form.Text>
            </Form.Group>
-               
-          
-                
-                <Form.Group className="total-tonnage-output" controlId="tonnes">
+
+           <Form.Group className="total-tonnage-output" controlId="tonnes-output">
                 <Card border="primary">
-                <Card.Body>
                 <Card.Header as="h3">Tonnes:</Card.Header>
-                <Card.Text as="h4" className="tonnes-output-num">{tonnes}</Card.Text>
+                <Card.Body>
+                <Card.Text as="h3" className="tonnes-output-num">{tonnes}</Card.Text>
                 <Button variant="outline-primary" size="lg" className="add-btn" onClick={addItem}>Add</Button>
                 </Card.Body>
                 </Card>
-                </Form.Group>
+                </Form.Group> 
+          
 
             <Form.Group className="list" controlId="tonnes">
             <ListGroup>
                 {items.map(item => (
-                    <ListGroup.Item className="list-item" key={item.id}>{item.value.toPrecision(5)} <Button variant="outline-danger" size="sm" className="delete-btn" onClick={() => deleteItem(item.id)}>Del</Button>
+                    <ListGroup.Item className="list-item" key={item.id}>{item.value.toPrecision(5)}
+                  
+        
+                     <Button variant="outline-danger" size="sm" className="delete-btn" onClick={() => deleteItem(item.id)}>Del</Button>
 
                     
                     </ListGroup.Item> 
@@ -182,7 +175,7 @@ const defaultType = [
                 <Card border="success">
                 <Card.Header as="h3">Estimated Cost:</Card.Header>
                 <Card.Body>
-                <Card.Text as="h4">${((totalTonnage).toPrecision(5) * 0.1 + totalTonnage) * asphaltType}</Card.Text>
+                <Card.Text as="h4">${((totalTonnage * wasteAllowance + totalTonnage) * asphaltType).toPrecision(5)}</Card.Text>
              
              </Card.Body>
              </Card>

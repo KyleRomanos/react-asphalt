@@ -30,7 +30,7 @@ export default function MetersSquared() {
                 
       <Form.Group className="mb-3" controlId="squared-meters">
             <Form.Label>Meters Squared:</Form.Label>
-            <Form.Control type="number" className="output" value={metersSquared} />
+            <Form.Control type="number" className="output" value={metersSquared} disabled/>
             </Form.Group>
             </Form>
            

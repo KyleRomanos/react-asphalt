@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form'
-    
-export default function Calculation() {
+
+
+export default function Calculation({metersSquared, setMetersSquared, feetSquared, setFeetSquared}) {
     // useState hook
     const [length, setLength] = useState('');
     const [width, setWidth] = useState('');
-    const [feetSquared, setFeetSquared] = useState('');
-    const [metersSquared, setMetersSquared] = useState('');
-    const [triangleMeasurement, setTriangleMeasurement] = useState(false);
-  
-    
+    const [squaredFeet, setSquaredFeet] = useState('');
+    // const [feetSquared, setFeetSquared] = useState('');
+    // const [metersSquared, setMetersSquared] = useState('');
+    // const [triangleMeasurement, setTriangleMeasurement] = useState(false);
+
 
     // useEffect is a Hook, it will be called everytime 'length' or 'width' change.
     useEffect(() => {
+        
         const newFeetSquared = parseInt(length) * parseInt(width);
         const newMetersSquared = parseInt(length) * parseInt(width)/ 10.76;
         
@@ -20,20 +22,20 @@ export default function Calculation() {
 
         setFeetSquared(newFeetSquared);
         setMetersSquared(newMetersSquared);
+        
     }
 },[length, width]);
+
+useEffect(() => {
+    setSquaredFeet(feetSquared)
+  }, [feetSquared])
+
+ 
 
     return (
 
         <Form>
-            <Form.Group className="triangle" controlId="formBasicCheckbox">
-            <Form.Label>Triangle measurement?</Form.Label>
-            <Form.Check type="checkbox" onChange={(e) =>{setTriangleMeasurement(e.target.checked) }}/>
-            <Form.Text className="text-muted">
-      Check the box above if measurement is not squared
-    </Form.Text>
-
-            </Form.Group>       
+ 
 
                     
             <Form.Group className="mb-3" controlId="length">   
@@ -49,12 +51,12 @@ export default function Calculation() {
              
                 <Form.Group className="mb-3" controlId="feet-squared">
                 <Form.Label className="output-form">Feet Squared: </Form.Label>
-                <Form.Control type="function" className="output" value={triangleMeasurement ? feetSquared / 2 : feetSquared} />
+                <Form.Control type="function" className="output"  value={squaredFeet} onChange={(e) => setSquaredFeet(e.target.value)} disabled/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="meters-squared">
                 <Form.Label className="output-form">Meters Squared: </Form.Label>
-                <Form.Control type="function" className="output"  value={triangleMeasurement ? metersSquared / 2 : metersSquared} />
+                <Form.Control type="function" className="output"  value={metersSquared} disabled/>
                 </Form.Group>
         
             </Form>

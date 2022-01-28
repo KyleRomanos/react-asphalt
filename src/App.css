@@ -7,7 +7,7 @@
   letter-spacing: 0.5px;
   font-size: large;
   background: rgb(45, 45, 48);
-  
+  width: 100%;
 }
 
 
@@ -58,6 +58,10 @@ button {
   margin-bottom: 15px;
 }
 
+.delete-btn {
+  margin-left: 5px;
+}
+
 
 .modal-header {
   font-family: 'Bebas Neue', sans-serif;
@@ -71,6 +75,7 @@ button {
 .modal-body {
   font-family: 'Bebas Neue', sans-serif;
   letter-spacing: 1px;
+  background-color: rgb(255, 187, 0);
   font-size: large;
 }
 
@@ -129,7 +134,24 @@ button {
   margin-left: 20px;
   text-align: left;
   color: rgb(255, 187, 0);
-}
+  display: flex;
+    justify-content: left;
+    align-items: left;
+    padding-bottom: -10px;
+  }
+  .checkbox {
+    padding-top: -50px;
+    padding-left: 10px;
+    padding-right: 20px;
+  }
+
+  .triangle-text {
+    margin-top: -10px;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 5px;
+  }
+
 
 
 .add-btn {
@@ -145,16 +167,12 @@ button {
 
 .list-item {
   text-align: right;
+  
   margin-left: 20px;
   margin-right: 20px;
 }
 
-.tonnes-output {
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-bottom: 10px;
-  margin-top: 10px;
-}
+
 
 .tonnes-output-num {
   padding-top: 10px;
@@ -172,4 +190,96 @@ button {
 .waste-allowance {
   margin-bottom: 10px;
   margin-top: 10px;
+}
+
+@media screen and (min-width: 600px) {
+
+  .App {
+  padding-left: 50px;
+ 
+   padding-right: 50px;
+  }
+
+
+}
+
+@media screen and (min-width: 750px) {
+
+  .App {
+  padding-left: 100px;
+ 
+   padding-right: 100px;
+  }
+}
+
+@media screen and (min-width: 850px) {
+
+  .App {
+  padding-left: 150px;
+ 
+   padding-right: 150px;
+  }
+
+  @media screen and (min-width: 950px) {
+
+    .App {
+    padding-left: 200px;
+   
+     padding-right: 200px;
+    }
+}
+
+@media screen and (min-width: 1150px) {
+
+  .App {
+  padding-left: 250px;
+ 
+   padding-right: 250px;
+  }
+}
+
+@media screen and (min-width: 1350px) {
+
+  .App {
+  padding-left: 300px;
+ 
+   padding-right: 300px;
+  }
+}
+
+@media screen and (min-width: 1550px) {
+
+  .App {
+  padding-left: 350px;
+ 
+   padding-right: 350px;
+  }
+}
+
+@media screen and (min-width: 1650px) {
+
+  .App {
+  padding-left: 400px;
+ 
+   padding-right: 400px;
+  }
+}
+
+@media screen and (min-width: 1850px) {
+
+  .App {
+  padding-left: 450px;
+ 
+   padding-right: 450px;
+  }
+}
+
+@media screen and (min-width: 2050px) {
+
+  .App {
+  padding-left: 500px;
+ 
+   padding-right: 500px;
+  }
+}
 }
